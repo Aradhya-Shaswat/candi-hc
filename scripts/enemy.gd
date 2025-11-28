@@ -4,7 +4,12 @@ var speed = 38
 var playerChase = false
 var player = null
 
+var health = 100
+var playerAttackZone = false
+var canTakeDamage = true
+
 func _physics_process(delta):
+	dealDamage()
 	
 	if playerChase:
 		if position.distance_to(player.position) > 10:
@@ -28,3 +33,29 @@ func _on_detection_area_body_entered(body: Node2D) -> void:
 func _on_detection_area_body_exited(body: Node2D) -> void:
 	player = null
 	playerChase = false
+	
+func enemy():
+	pass
+
+func _on_enemy_hitbox_body_entered(body: Node2D) -> void:
+	if body.has_method('player'):
+		playerAttackZone = true
+
+
+func _on_enemy_hitbox_body_exited(body: Node2D) -> void:
+	if body.has_method('player'):
+		playerAttackZone = false
+
+func dealDamage():
+	if playerAttackZone and GlobalScript.playerCurrentAttack == true:
+		if canTakeDamage == true:
+			health = health - 20 
+			$takeDamageCooldown.start()
+			canTakeDamage = false
+			print('enemy health:', health)
+			if health <= 0:
+				self.queue_free()
+
+
+func _on_take_damage_cooldown_timeout() -> void:
+	canTakeDamage = true

@@ -1,4 +1,4 @@
-[gd_scene load_steps=56 format=3 uid="uid://3ikw1yhh75uf"]
+[gd_scene load_steps=57 format=3 uid="uid://3ikw1yhh75uf"]
 
 [ext_resource type="Script" uid="uid://b0j2v1d2wsjgt" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://bttjeoxp5146s" path="res://assets/sprites/characters/player.png" id="2_qhqgy"]
@@ -417,6 +417,9 @@ animations = [{
 radius = 5.0
 height = 10.0
 
+[sub_resource type="CircleShape2D" id="CircleShape2D_g2els"]
+radius = 16.03122
+
 [node name="Player" type="CharacterBody2D"]
 y_sort_enabled = true
 collision_layer = 3
@@ -429,3 +432,30 @@ offset = Vector2(0, -15)
 
 [node name="CollisionShape2D" type="CollisionShape2D" parent="."]
 shape = SubResource("CapsuleShape2D_g2els")
+
+[node name="playerHitbox" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="playerHitbox"]
+position = Vector2(0, -6)
+shape = SubResource("CircleShape2D_g2els")
+
+[node name="attackCooldown" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="dealAttack" type="Timer" parent="."]
+
+[node name="Camera2D" type="Camera2D" parent="."]
+zoom = Vector2(4, 4)
+limit_left = 0
+limit_top = -1
+limit_right = 1147
+limit_bottom = 638
+limit_smoothed = true
+rotation_smoothing_enabled = true
+drag_horizontal_enabled = true
+drag_vertical_enabled = true
+
+[connection signal="body_entered" from="playerHitbox" to="." method="_on_player_hitbox_body_entered"]
+[connection signal="body_exited" from="playerHitbox" to="." method="_on_player_hitbox_body_exited"]
+[connection signal="timeout" from="attackCooldown" to="." method="_on_attack_cooldown_timeout"]
+[connection signal="timeout" from="dealAttack" to="." method="_on_deal_attack_timeout"]
