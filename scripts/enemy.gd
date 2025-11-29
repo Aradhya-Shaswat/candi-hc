@@ -10,6 +10,7 @@ var canTakeDamage = true
 
 func _physics_process(delta):
 	dealDamage()
+	updateHealth()
 	
 	if playerChase:
 		if position.distance_to(player.position) > 10:
@@ -49,7 +50,7 @@ func _on_enemy_hitbox_body_exited(body: Node2D) -> void:
 func dealDamage():
 	if playerAttackZone and GlobalScript.playerCurrentAttack == true:
 		if canTakeDamage == true:
-			health = health - 20 
+			health = health - 40
 			$takeDamageCooldown.start()
 			canTakeDamage = false
 			print('enemy health:', health)
@@ -59,3 +60,16 @@ func dealDamage():
 
 func _on_take_damage_cooldown_timeout() -> void:
 	canTakeDamage = true
+
+func updateHealth():
+	var healthBar = $HealthBar
+	
+	healthBar.value = health
+	
+	if health >= 100:
+		healthBar.visible = false
+	else:
+		healthBar.visible = true
+		
+		
+		
