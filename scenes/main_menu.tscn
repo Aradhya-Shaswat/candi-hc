@@ -1,7 +1,11 @@
-[gd_scene load_steps=8 format=3 uid="uid://p5w5001fmd4y"]
+[gd_scene load_steps=12 format=3 uid="uid://p5w5001fmd4y"]
 
 [ext_resource type="FontFile" uid="uid://c0xl8v404kqjg" path="res://assets/fonts/Poppins-Regular.ttf" id="1_ekxnf"]
 [ext_resource type="FontFile" uid="uid://35xk5r8kfyyf" path="res://assets/fonts/PressStart2P-Regular.ttf" id="1_l6cm7"]
+[ext_resource type="Script" uid="uid://b68ic2eeirahx" path="res://scripts/MenuScripts/StartGame.gd" id="2_bqqt6"]
+[ext_resource type="Script" uid="uid://bnpsg01y4av86" path="res://scripts/MenuScripts/ContinueGame.gd" id="3_wu84c"]
+[ext_resource type="Script" uid="uid://cxe3r6ml0pp1q" path="res://scripts/MenuScripts/Options.gd" id="4_rtw2f"]
+[ext_resource type="Script" uid="uid://xqhv1oyvnr67" path="res://scripts/MenuScripts/Credits.gd" id="5_oa1go"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bqqt6"]
 bg_color = Color(0.7389058, 0.6833905, 0.4853295, 1)
@@ -72,7 +76,7 @@ size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 10
 
-[node name="Button" type="Button" parent="VBoxContainer"]
+[node name="NewGame" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 tooltip_text = "Start a new game!"
@@ -86,8 +90,9 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_l6cm7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ekxnf")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_vue75")
 text = "New Game"
+script = ExtResource("2_bqqt6")
 
-[node name="Button4" type="Button" parent="VBoxContainer"]
+[node name="Continue" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 tooltip_text = "Continue's a previous game."
@@ -101,8 +106,9 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_l6cm7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ekxnf")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_vue75")
 text = "Continue"
+script = ExtResource("3_wu84c")
 
-[node name="Button2" type="Button" parent="VBoxContainer"]
+[node name="Options" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 tooltip_text = "Opens Settings/Options"
@@ -116,8 +122,9 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_l6cm7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ekxnf")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_vue75")
 text = "Options"
+script = ExtResource("4_rtw2f")
 
-[node name="Button3" type="Button" parent="VBoxContainer"]
+[node name="Credits" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 tooltip_text = "Opens Credits"
@@ -131,6 +138,7 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_l6cm7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ekxnf")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_vue75")
 text = "Credits"
+script = ExtResource("5_oa1go")
 
 [node name="HeaderText" type="Label" parent="."]
 layout_mode = 1
@@ -161,10 +169,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -552.0
-offset_top = 258.0
-offset_right = -192.0
-offset_bottom = 333.0
+offset_left = -167.0
+offset_top = 233.0
+offset_right = 193.0
+offset_bottom = 308.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -176,3 +184,5 @@ theme_override_font_sizes/font_size = 12
 text = "A game for Hack Club Milkyway!"
 horizontal_alignment = 1
 vertical_alignment = 1
+
+[connection signal="pressed" from="VBoxContainer/NewGame" to="VBoxContainer/NewGame" method="_on_pressed"]
