@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=4 uid="uid://xrojbhewkkrv"]
+[gd_scene load_steps=13 format=4 uid="uid://xrojbhewkkrv"]
 
 [ext_resource type="Texture2D" uid="uid://bwefnm6u0sf0o" path="res://assets/sprites/tilesets/plains.png" id="1_4eyuj"]
 [ext_resource type="Script" uid="uid://cfyj74wrn8mkn" path="res://scripts/World.gd" id="1_77kw0"]
@@ -84,6 +84,9 @@ sources/2 = SubResource("TileSetAtlasSource_ypmbo")
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_kwwa1"]
 size = Vector2(64, 47)
 
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_77kw0"]
+size = Vector2(107, 11)
+
 [node name="World1" type="Node2D"]
 y_sort_enabled = true
 script = ExtResource("1_77kw0")
@@ -110,7 +113,7 @@ tile_map_data = PackedByteArray("AAAIAAAAAgAAAAUAAAABAAcAAgAAAAUAAAANAAIAAgAAAAU
 tile_set = SubResource("TileSet_h5q77")
 
 [node name="Player" parent="." instance=ExtResource("4_cmxnd")]
-position = Vector2(41, 44)
+position = Vector2(675, 637)
 
 [node name="enemy" parent="." instance=ExtResource("5_kwwa1")]
 position = Vector2(286, 117)
@@ -141,4 +144,11 @@ polygon = PackedVector2Array(0, 0, 629, 0, 628, -33, 693, -33, 693, 0, 960, 0, 9
 position = Vector2(661, -23.5)
 shape = SubResource("RectangleShape2D_kwwa1")
 
+[node name="CandyAreaTransition" type="Area2D" parent="."]
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CandyAreaTransition"]
+position = Vector2(677.5, 656.5)
+shape = SubResource("RectangleShape2D_77kw0")
+
 [connection signal="body_entered" from="CliffsideTransition" to="." method="_on_cliffside_transition_body_entered"]
+[connection signal="body_entered" from="CandyAreaTransition" to="." method="_on_candy_area_transition_body_entered"]
