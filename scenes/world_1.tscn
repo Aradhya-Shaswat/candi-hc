@@ -110,7 +110,7 @@ tile_map_data = PackedByteArray("AAAIAAAAAgAAAAUAAAABAAcAAgAAAAUAAAANAAIAAgAAAAU
 tile_set = SubResource("TileSet_h5q77")
 
 [node name="Player" parent="." instance=ExtResource("4_cmxnd")]
-position = Vector2(661, 49)
+position = Vector2(41, 44)
 
 [node name="enemy" parent="." instance=ExtResource("5_kwwa1")]
 position = Vector2(286, 117)
@@ -127,4 +127,3 @@ position = Vector2(663.5, -23.5)
 shape = SubResource("RectangleShape2D_kwwa1")
 
 [connection signal="body_entered" from="CliffsideTransition" to="." method="_on_cliffside_transition_body_entered"]
-[connection signal="body_exited" from="CliffsideTransition" to="." method="_on_cliffside_transition_body_exited"]

@@ -139,12 +139,9 @@ func _on_deal_attack_timeout() -> void:
 	GlobalScript.playerCurrentAttack = false
 	attackIp = false
 
+
 func currentCamera():
-	if GlobalScript.currentScene == 'world':
-		#print('global camera')
-		$worldCamera.enabled = true
-		$cliffsideCamera.enabled = false
-	elif GlobalScript.currentScene == 'cliff_side':
-		print('cliffside camera')
-		$worldCamera.enabled = false
-		$cliffsideCamera.enabled = true
+	if GlobalScript.currentScene == "world":
+		$worldCamera.make_current()
+	else:
+		$cliffsideCamera.make_current()

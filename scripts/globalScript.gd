@@ -5,15 +5,16 @@ var playerCurrentAttack = false
 var currentScene = 'world'
 var transitionScene = false
 
-var playerExitCliffPosx = 0
-var playerExitCliffPosy = 0
+var playerExitCliffPosx = 663
+var playerExitCliffPosy = 21
 
-var playerStartPosx = 0
-var playerStartPosy = 0
+var playerStartPosx = 41
+var playerStartPosy = 40
+
+var gameFirstLoads = true
 
 func finishChangingScene():
 	if transitionScene == true:
-		print('transitioned to cliffside')
 		transitionScene = false
 		if currentScene == 'world':
 			currentScene = 'cliff_side'
