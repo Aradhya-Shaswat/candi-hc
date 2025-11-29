@@ -9,8 +9,8 @@ var candyTransitionScene = false
 var playerExitCliffPosx = 663
 var playerExitCliffPosy = 21
 
-var playerExitCandyPosx = 675
-var playerExitCandyPosy = 637
+var playerExitCandyPosx = 640
+var playerExitCandyPosy = 612
 
 var playerStartPosx = 41
 var playerStartPosy = 40

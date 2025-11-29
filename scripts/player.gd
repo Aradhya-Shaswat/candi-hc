@@ -2,13 +2,13 @@ extends CharacterBody2D
 
 var ifEnemyRange = false
 var enemyAttackCooldown = true
-var health = 150
+var health = 100
 var isPlayerAlive = true
 
 var attackIp = false
 
-const SPEED = 100
-var current_dir = 'down'
+const SPEED = 80
+var current_dir = 'none'
 
 func _ready():
 	$AnimatedSprite2D.play('frontIdle')
@@ -21,9 +21,13 @@ func _physics_process(delta):
 	updateHealth()
 	
 	if health <= 0:
+		GlobalScript.gameFirstLoads = true
+		GlobalScript.candyExit = false
+		GlobalScript.cliffExit = false
 		isPlayerAlive = false
 		health = 0
-		print('player died')
+		#print('player died')
+		get_tree().change_scene_to_file("res://scenes/death.tscn")
 		queue_free()
 		
 func player():
@@ -145,7 +149,7 @@ func updateHealth():
 
 func _on_regen_timer_timeout() -> void:
 	if health < 100:
-		health += 20
+		health += 2.5
 		if health > 100:
 			health = 100
 	if health <= 0:

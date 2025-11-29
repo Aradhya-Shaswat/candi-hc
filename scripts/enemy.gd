@@ -50,7 +50,7 @@ func _on_enemy_hitbox_body_exited(body: Node2D) -> void:
 func dealDamage():
 	if playerAttackZone and GlobalScript.playerCurrentAttack == true:
 		if canTakeDamage == true:
-			health = health - 40
+			health = health - 20
 			$takeDamageCooldown.start()
 			canTakeDamage = false
 			print('enemy health:', health)

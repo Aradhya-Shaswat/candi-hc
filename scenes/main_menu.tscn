@@ -3,9 +3,9 @@
 [ext_resource type="FontFile" uid="uid://c0xl8v404kqjg" path="res://assets/fonts/Poppins-Regular.ttf" id="1_ekxnf"]
 [ext_resource type="FontFile" uid="uid://35xk5r8kfyyf" path="res://assets/fonts/PressStart2P-Regular.ttf" id="1_l6cm7"]
 [ext_resource type="Script" uid="uid://b68ic2eeirahx" path="res://scripts/MenuScripts/StartGame.gd" id="2_bqqt6"]
-[ext_resource type="Script" uid="uid://bnpsg01y4av86" path="res://scripts/MenuScripts/ContinueGame.gd" id="3_wu84c"]
-[ext_resource type="Script" uid="uid://cxe3r6ml0pp1q" path="res://scripts/MenuScripts/Options.gd" id="4_rtw2f"]
-[ext_resource type="Script" uid="uid://xqhv1oyvnr67" path="res://scripts/MenuScripts/Credits.gd" id="5_oa1go"]
+[ext_resource type="AudioStream" uid="uid://dmtyovkjvmmrb" path="res://assets/sounds/menu-hover.mp3" id="5_rtw2f"]
+[ext_resource type="AudioStream" uid="uid://b1n6dhuxbrsxd" path="res://assets/sounds/menu-click.mp3" id="6_oa1go"]
+[ext_resource type="AudioStream" uid="uid://bb61xycxj84wx" path="res://assets/sounds/Subwoofer Lullaby - C418 (youtube).mp3" id="7_oa1go"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bqqt6"]
 bg_color = Color(0.7389058, 0.6833905, 0.4853295, 1)
@@ -50,16 +50,34 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 
+[node name="MenuBG" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("7_oa1go")
+volume_db = -17.838
+autoplay = true
+parameters/looping = true
+
 [node name="Panel" type="Panel" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
+offset_left = -2.0
+offset_right = -2.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_bqqt6")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="."]
+[node name="Control" type="Control" parent="."]
+anchors_preset = 0
+offset_left = 482.0
+offset_top = 432.75
+offset_right = 670.0
+offset_bottom = 432.75
+script = ExtResource("2_bqqt6")
+hover_player_path = NodePath("../HoverPlayer")
+click_player_path = NodePath("../ClickPlayer")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -67,16 +85,16 @@ anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
 offset_left = -94.0
-offset_top = -67.25
+offset_top = -176.0
 offset_right = 94.0
-offset_bottom = 109.25
+offset_bottom = 0.5
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 10
 
-[node name="NewGame" type="Button" parent="VBoxContainer"]
+[node name="NewGame" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 tooltip_text = "Start a new game!"
@@ -89,26 +107,9 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_vue75")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_l6cm7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ekxnf")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_vue75")
-text = "New Game"
-script = ExtResource("2_bqqt6")
+text = "Start Game"
 
-[node name="Continue" type="Button" parent="VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-tooltip_text = "Continue's a previous game."
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_ekxnf")
-theme_override_styles/normal = SubResource("StyleBoxFlat_vue75")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_l6cm7")
-theme_override_styles/hover = SubResource("StyleBoxFlat_ekxnf")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_vue75")
-text = "Continue"
-script = ExtResource("3_wu84c")
-
-[node name="Options" type="Button" parent="VBoxContainer"]
+[node name="Options" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 tooltip_text = "Opens Settings/Options"
@@ -122,9 +123,8 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_l6cm7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ekxnf")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_vue75")
 text = "Options"
-script = ExtResource("4_rtw2f")
 
-[node name="Credits" type="Button" parent="VBoxContainer"]
+[node name="Credits" type="Button" parent="Control/VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
 tooltip_text = "Opens Credits"
@@ -138,9 +138,23 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_l6cm7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ekxnf")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_vue75")
 text = "Credits"
-script = ExtResource("5_oa1go")
 
-[node name="HeaderText" type="Label" parent="."]
+[node name="Exit" type="Button" parent="Control/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+tooltip_text = "Opens Credits"
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
+theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
+theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("1_ekxnf")
+theme_override_styles/normal = SubResource("StyleBoxFlat_vue75")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_l6cm7")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ekxnf")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_vue75")
+text = "Exit"
+
+[node name="Title" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -162,17 +176,17 @@ text = "Candi!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="BottomText" type="Label" parent="."]
+[node name="FootNote" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -167.0
-offset_top = 233.0
-offset_right = 193.0
-offset_bottom = 308.0
+offset_left = -168.0
+offset_top = 172.0
+offset_right = 192.0
+offset_bottom = 247.0
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
@@ -185,4 +199,10 @@ text = "A game for Hack Club Milkyway!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="pressed" from="VBoxContainer/NewGame" to="VBoxContainer/NewGame" method="_on_pressed"]
+[node name="HoverPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_rtw2f")
+volume_db = -24.684
+
+[node name="ClickPlayer" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("6_oa1go")
+volume_db = -34.874

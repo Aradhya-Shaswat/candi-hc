@@ -1,12 +1,13 @@
-[gd_scene load_steps=11 format=4 uid="uid://dt88gmutqpdwg"]
+[gd_scene load_steps=12 format=4 uid="uid://dt88gmutqpdwg"]
 
 [ext_resource type="Script" uid="uid://p57mpe23dgkn" path="res://scripts/candy.gd" id="1_gee56"]
 [ext_resource type="Texture2D" uid="uid://bwefnm6u0sf0o" path="res://assets/sprites/tilesets/plains.png" id="2_udkta"]
 [ext_resource type="Texture2D" uid="uid://bgq3u0kqgk3oc" path="res://assets/sprites/tilesets/grass.png" id="3_85oyv"]
 [ext_resource type="Texture2D" uid="uid://bgxcx4jda4c8o" path="res://assets/sprites/objects/objects.png" id="4_aqpx8"]
 [ext_resource type="PackedScene" uid="uid://3ikw1yhh75uf" path="res://scenes/player.tscn" id="5_hqh5l"]
+[ext_resource type="FontFile" uid="uid://35xk5r8kfyyf" path="res://assets/fonts/PressStart2P-Regular.ttf" id="6_udkta"]
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_o3jk3"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_udkta"]
 texture = ExtResource("2_udkta")
 2:1/0 = 0
 2:0/0 = 0
@@ -46,11 +47,11 @@ texture = ExtResource("2_udkta")
 4:2/0 = 0
 5:2/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_b88vm"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_85oyv"]
 texture = ExtResource("3_85oyv")
 0:0/0 = 0
 
-[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_q1f6m"]
+[sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_aqpx8"]
 texture = ExtResource("4_aqpx8")
 0:5/size_in_atlas = Vector2i(3, 4)
 0:5/0 = 0
@@ -85,9 +86,9 @@ texture = ExtResource("4_aqpx8")
 
 [sub_resource type="TileSet" id="TileSet_uihar"]
 physics_layer_0/collision_layer = 1
-sources/0 = SubResource("TileSetAtlasSource_o3jk3")
-sources/1 = SubResource("TileSetAtlasSource_b88vm")
-sources/2 = SubResource("TileSetAtlasSource_q1f6m")
+sources/0 = SubResource("TileSetAtlasSource_udkta")
+sources/1 = SubResource("TileSetAtlasSource_85oyv")
+sources/2 = SubResource("TileSetAtlasSource_aqpx8")
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_jaocn"]
 size = Vector2(44, 20)
@@ -136,10 +137,13 @@ position = Vector2(212, 195)
 shape = SubResource("RectangleShape2D_jaocn")
 
 [node name="Label" type="Label" parent="."]
-offset_left = 157.0
-offset_top = 66.0
-offset_right = 212.0
-offset_bottom = 89.0
-text = "CANDY"
+offset_left = 112.0
+offset_top = 35.0
+offset_right = 312.0
+offset_bottom = 58.0
+theme_override_fonts/font = ExtResource("6_udkta")
+theme_override_font_sizes/font_size = 8
+text = "i haven't figured out the 
+ending.. so uhm :("
 
 [connection signal="body_entered" from="CandyExit" to="." method="_on_candy_exit_body_entered"]
