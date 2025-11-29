@@ -68,11 +68,16 @@ grow_vertical = 2
 theme_override_styles/panel = SubResource("StyleBoxFlat_bqqt6")
 
 [node name="Control" type="Control" parent="."]
-anchors_preset = 0
-offset_left = 482.0
-offset_top = 432.75
-offset_right = 670.0
-offset_bottom = 432.75
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -94.0
+offset_top = 108.75
+offset_right = 94.0
+offset_bottom = 108.75
 script = ExtResource("2_bqqt6")
 hover_player_path = NodePath("../HoverPlayer")
 click_player_path = NodePath("../ClickPlayer")

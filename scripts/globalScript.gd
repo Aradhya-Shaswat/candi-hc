@@ -1,6 +1,7 @@
 extends Node
 
 var playerCurrentAttack = false
+var hardMode: bool = false
 
 var currentScene = 'world'
 var cliffTransitionScene = false
