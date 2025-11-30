@@ -11,13 +11,21 @@ config_version=5
 [application]
 
 config/name="Candi"
+config/description="you know, and if you don't, you never know..."
+config/version="1.0.0"
 run/main_scene="uid://p5w5001fmd4y"
 config/features=PackedStringArray("4.5", "Forward Plus")
+boot_splash/show_image=false
 config/icon="res://assets/icon.svg"
 
 [autoload]
 
 GlobalScript="*res://scripts/globalScript.gd"
+
+[display]
+
+window/size/resizable=false
+window/size/borderless=true
 
 [dotnet]
 

@@ -46,6 +46,7 @@ func _on_button_pressed(btn: Button) -> void:
 	if target == "__QUIT__":
 		get_tree().quit()
 	elif target != "":
+		print(GlobalScript.hardMode)
 		get_tree().change_scene_to_file(target)
 	else:
 		print_debug("No scene mapped for button:", btn.name)

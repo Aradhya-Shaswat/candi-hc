@@ -3,6 +3,12 @@ extends Node
 var playerCurrentAttack = false
 var hardMode: bool = false
 
+func get_hard_mode() -> bool:
+	return hardMode
+
+func set_hard_mode(value: bool) -> void:
+	hardMode = value
+
 var currentScene = 'world'
 var cliffTransitionScene = false
 var candyTransitionScene = false

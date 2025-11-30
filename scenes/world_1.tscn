@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=4 uid="uid://xrojbhewkkrv"]
+[gd_scene load_steps=14 format=4 uid="uid://xrojbhewkkrv"]
 
 [ext_resource type="Texture2D" uid="uid://bwefnm6u0sf0o" path="res://assets/sprites/tilesets/plains.png" id="1_4eyuj"]
 [ext_resource type="Script" uid="uid://cfyj74wrn8mkn" path="res://scripts/World.gd" id="1_77kw0"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://bgxcx4jda4c8o" path="res://assets/sprites/objects/objects.png" id="3_kwwa1"]
 [ext_resource type="PackedScene" uid="uid://3ikw1yhh75uf" path="res://scenes/player.tscn" id="4_cmxnd"]
 [ext_resource type="PackedScene" uid="uid://bne51wqui7128" path="res://scenes/enemy.tscn" id="5_kwwa1"]
+[ext_resource type="FontFile" uid="uid://35xk5r8kfyyf" path="res://assets/fonts/PressStart2P-Regular.ttf" id="7_ol31w"]
 
 [sub_resource type="TileSetAtlasSource" id="TileSetAtlasSource_77kw0"]
 texture = ExtResource("1_4eyuj")
@@ -115,23 +116,34 @@ tile_set = SubResource("TileSet_h5q77")
 [node name="Player" parent="." instance=ExtResource("4_cmxnd")]
 position = Vector2(52, 66)
 
-[node name="enemy" parent="." instance=ExtResource("5_kwwa1")]
+[node name="Enemies" type="Node2D" parent="."]
+
+[node name="enemy" parent="Enemies" instance=ExtResource("5_kwwa1")]
 position = Vector2(286, 117)
 
-[node name="enemy2" parent="." instance=ExtResource("5_kwwa1")]
+[node name="enemy2" parent="Enemies" instance=ExtResource("5_kwwa1")]
 position = Vector2(506, 153)
 
-[node name="enemy3" parent="." instance=ExtResource("5_kwwa1")]
+[node name="enemy3" parent="Enemies" instance=ExtResource("5_kwwa1")]
 position = Vector2(661, 46)
 
-[node name="enemy4" parent="." instance=ExtResource("5_kwwa1")]
+[node name="enemy4" parent="Enemies" instance=ExtResource("5_kwwa1")]
 position = Vector2(783, 190)
 
-[node name="enemy5" parent="." instance=ExtResource("5_kwwa1")]
+[node name="enemy5" parent="Enemies" instance=ExtResource("5_kwwa1")]
 position = Vector2(1109, 230)
 
-[node name="enemy6" parent="." instance=ExtResource("5_kwwa1")]
+[node name="enemy6" parent="Enemies" instance=ExtResource("5_kwwa1")]
 position = Vector2(941, 265)
+
+[node name="enemy7" parent="Enemies" instance=ExtResource("5_kwwa1")]
+position = Vector2(414, 360)
+
+[node name="enemy8" parent="Enemies" instance=ExtResource("5_kwwa1")]
+position = Vector2(473, 504)
+
+[node name="enemy9" parent="Enemies" instance=ExtResource("5_kwwa1")]
+position = Vector2(589, 584)
 
 [node name="collision" type="StaticBody2D" parent="."]
 
@@ -149,6 +161,15 @@ shape = SubResource("RectangleShape2D_kwwa1")
 [node name="CollisionShape2D" type="CollisionShape2D" parent="CandyAreaTransition"]
 position = Vector2(677.5, 656.5)
 shape = SubResource("RectangleShape2D_77kw0")
+
+[node name="helper" type="Label" parent="."]
+offset_left = 51.0
+offset_top = 70.0
+offset_right = 179.0
+offset_bottom = 86.0
+theme_override_fonts/font = ExtResource("7_ol31w")
+theme_override_font_sizes/font_size = 12
+text = "WASD / N"
 
 [connection signal="body_entered" from="CliffsideTransition" to="." method="_on_cliffside_transition_body_entered"]
 [connection signal="body_entered" from="CandyAreaTransition" to="." method="_on_candy_area_transition_body_entered"]

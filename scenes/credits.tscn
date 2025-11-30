@@ -1,9 +1,8 @@
-[gd_scene load_steps=10 format=3 uid="uid://1pqvhsvmcccn"]
+[gd_scene load_steps=9 format=3 uid="uid://cyh0gwhscg7pl"]
 
-[ext_resource type="FontFile" uid="uid://c0xl8v404kqjg" path="res://assets/fonts/Poppins-Regular.ttf" id="1_2iy26"]
-[ext_resource type="Script" uid="uid://wwumuioqk33y" path="res://scripts/HellModeToggle.gd" id="1_kv8mn"]
-[ext_resource type="FontFile" uid="uid://35xk5r8kfyyf" path="res://assets/fonts/PressStart2P-Regular.ttf" id="3_1sggn"]
-[ext_resource type="Script" uid="uid://ccif8cirxtgoc" path="res://scripts/useless2.gd" id="3_kv8mn"]
+[ext_resource type="FontFile" uid="uid://c0xl8v404kqjg" path="res://assets/fonts/Poppins-Regular.ttf" id="1_2fbfq"]
+[ext_resource type="Script" uid="uid://ccif8cirxtgoc" path="res://scripts/useless2.gd" id="3_mah5v"]
+[ext_resource type="FontFile" uid="uid://35xk5r8kfyyf" path="res://assets/fonts/PressStart2P-Regular.ttf" id="4_kyhnv"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bqqt6"]
 bg_color = Color(0.7389058, 0.6833905, 0.4853295, 1)
@@ -40,7 +39,7 @@ shadow_offset = Vector2(0, 1.6)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vue75"]
 
-[node name="MainMenu" type="Control"]
+[node name="credits" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -64,35 +63,15 @@ anchor_left = 0.5
 anchor_top = 0.578
 anchor_right = 0.5
 anchor_bottom = 0.578
-offset_left = -94.0
-offset_top = -41.544006
-offset_right = 94.0
-offset_bottom = 41.705994
+offset_left = -59.0
+offset_top = 86.45599
+offset_right = 61.0
+offset_bottom = 109.45599
 grow_horizontal = 2
 grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 theme_override_constants/separation = 30
-
-[node name="CheckButton" type="CheckButton" parent="VBoxContainer"]
-layout_mode = 2
-tooltip_text = "Enables Hard Mode (less fun btw)"
-theme_override_colors/font_color = Color(0, 0, 0, 1)
-theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
-theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
-theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_constants/outline_size = 0
-theme_override_constants/h_separation = 0
-theme_override_constants/line_spacing = 0
-theme_override_fonts/font = ExtResource("1_2iy26")
-theme_override_font_sizes/font_size = 17
-theme_override_styles/normal = SubResource("StyleBoxFlat_vue75")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_l6cm7")
-theme_override_styles/hover = SubResource("StyleBoxFlat_ekxnf")
-theme_override_styles/focus = SubResource("StyleBoxEmpty_vue75")
-text = "Hell Mode?"
-alignment = 1
-script = ExtResource("1_kv8mn")
 
 [node name="Back" type="Button" parent="VBoxContainer"]
 layout_mode = 2
@@ -102,13 +81,13 @@ theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
 theme_override_colors/font_hover_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("1_2iy26")
+theme_override_fonts/font = ExtResource("1_2fbfq")
 theme_override_styles/normal = SubResource("StyleBoxFlat_vue75")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_l6cm7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ekxnf")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_vue75")
 text = "Back"
-script = ExtResource("3_kv8mn")
+script = ExtResource("3_mah5v")
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 1
@@ -126,10 +105,34 @@ grow_vertical = 2
 size_flags_horizontal = 4
 theme_override_colors/font_color = Color(0.8627451, 0.8627451, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_1sggn")
+theme_override_fonts/font = ExtResource("4_kyhnv")
 theme_override_font_sizes/font_size = 55
-text = "Options?"
+text = "Credits!"
 horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Title2" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.51000005
+offset_left = -168.0
+offset_top = -41.0
+offset_right = 156.0
+offset_bottom = 65.51996
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+theme_override_colors/font_color = Color(0.7802059, 0.9180604, 0.822876, 1)
+theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("4_kyhnv")
+theme_override_font_sizes/font_size = 26
+text = "Hack Club
+Pixabay
+Mystic Woods
+DevWorm"
 vertical_alignment = 1
 
 [node name="FootNote" type="Label" parent="."]
@@ -149,11 +152,10 @@ size_flags_horizontal = 4
 tooltip_auto_translate_mode = 1
 theme_override_colors/font_color = Color(0.8627451, 1, 1, 1)
 theme_override_colors/font_shadow_color = Color(0, 0, 0, 1)
-theme_override_fonts/font = ExtResource("3_1sggn")
+theme_override_fonts/font = ExtResource("4_kyhnv")
 theme_override_font_sizes/font_size = 12
 text = "A game for Hack Club Milkyway!"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[connection signal="pressed" from="VBoxContainer/CheckButton" to="VBoxContainer/CheckButton" method="_on_pressed"]
-[connection signal="pressed" from="VBoxContainer/Back" to="VBoxContainer/CheckButton" method="_on_back_pressed_1"]
+[connection signal="pressed" from="VBoxContainer/Back" to="VBoxContainer/Back" method="_on_pressed_1"]

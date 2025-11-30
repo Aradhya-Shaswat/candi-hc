@@ -60,6 +60,7 @@ func dealDamage() -> void:
 			queue_free()
 
 func get_damage() -> int:
+	$hitTaken.play()
 	return int(damage)
 
 func _on_take_damage_cooldown_timeout() -> void:

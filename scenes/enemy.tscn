@@ -1,7 +1,8 @@
-[gd_scene load_steps=22 format=3 uid="uid://bne51wqui7128"]
+[gd_scene load_steps=23 format=3 uid="uid://bne51wqui7128"]
 
 [ext_resource type="Texture2D" uid="uid://uq7umn0ytrj0" path="res://assets/sprites/characters/slime.png" id="1_7p1mj"]
 [ext_resource type="Script" uid="uid://c0rl8qpdu0wbt" path="res://scripts/enemy.gd" id="1_md0e3"]
+[ext_resource type="AudioStream" uid="uid://jnyii50h5phv" path="res://assets/sounds/pixel-sound-effect-4-82881.mp3" id="3_4ra3w"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_md0e3"]
 atlas = ExtResource("1_7p1mj")
@@ -174,6 +175,10 @@ offset_right = 116.000015
 offset_bottom = 31.0
 scale = Vector2(0.1, 0.1)
 show_percentage = false
+
+[node name="hitTaken" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_4ra3w")
+volume_db = -7.93
 
 [connection signal="body_entered" from="detectionArea" to="." method="_on_detection_area_body_entered"]
 [connection signal="body_exited" from="detectionArea" to="." method="_on_detection_area_body_exited"]

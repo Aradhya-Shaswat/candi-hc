@@ -18,23 +18,9 @@ func _ready() -> void:
 func apply_difficulty() -> void:
 	if GlobalScript.hardMode:
 		$Player.speed = 50.0
-
-		for enemy in get_tree().get_nodes_in_group("Enemies"):
-			enemy.speed = 200.0
-			enemy.damage = 25
-
-			var n = enemy.name.to_lower()
-			if n.contains("enemy7") or n.contains("enemy8") or n.contains("enemy9") \
-			or n.contains("enemy10") or n.contains("enemy11") or n.contains("enemy12"):
-				enemy.visible = true
-
+		$Player.attack_damage = 10
 	else:
 		$Player.speed = 80.0
-
-		for enemy in get_tree().get_nodes_in_group("Enemies"):
-			enemy.speed = 38.0
-			enemy.damage = 20
-			enemy.visible = true
 
 func _process(delta: float) -> void:
 	changeCliffScene()

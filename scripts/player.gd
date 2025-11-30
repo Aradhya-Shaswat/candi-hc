@@ -5,6 +5,10 @@ var enemyAttackCooldown: bool = true
 var health: int = 100
 var isPlayerAlive: bool = true
 
+var walking: bool = false
+
+var canPlayHitSound: bool = true
+
 var attackIp: bool = false
 
 @export var speed: float = 80.0
@@ -23,13 +27,15 @@ func _physics_process(delta: float) -> void:
 	attack()
 	currentCamera()
 	updateHealth()
-
+			
 	if health <= 0:
+		$die.play()
 		GlobalScript.gameFirstLoads = true
 		GlobalScript.candyExit = false
 		GlobalScript.cliffExit = false
 		isPlayerAlive = false
 		health = 0
+		await get_tree().create_timer(0.5).timeout		
 		get_tree().change_scene_to_file("res://scenes/death.tscn")
 		queue_free()
 
@@ -62,14 +68,19 @@ func player_movement(delta: float) -> void:
 		velocity = input_vector * speed
 	else:
 		velocity = Vector2.ZERO
+	var moving := velocity.length() > 0
+
+	if moving and not walking:
+		walking = true
+		$walkStepTimer.start()
+
+	if not moving and walking:
+		walking = false
+		$walkStepTimer.stop()
 
 	if not attackIp:
-		if velocity.length() > 0:
-			_play_movement_anim(true)
-		else:
-			_play_movement_anim(false)
-
-	move_and_slide()
+		_play_movement_anim(moving)
+		move_and_slide()
 
 func _play_movement_anim(moving: bool) -> void:
 	var anim = $AnimatedSprite2D
@@ -88,7 +99,8 @@ func _play_movement_anim(moving: bool) -> void:
 		anim.flip_h = false
 		a = "backWalk" if moving else "backIdle"
 
-	if anim.animation != a:
+	if anim.animation != a and attackIp == false:
+		$walkSound.play()
 		anim.play(a)
 
 func attack() -> void:
@@ -106,11 +118,16 @@ func attack() -> void:
 			anim.play("frontAttack")
 		elif current_dir == "up":
 			anim.play("backAttack")
+		
+		if canPlayHitSound:
+			$hitSound.play()
+			canPlayHitSound = false
 
 		$dealAttack.start()
 		GlobalScript.playerCurrentAttack = true
 
 func _on_deal_attack_timeout() -> void:
+	canPlayHitSound = true
 	$dealAttack.stop()
 	GlobalScript.playerCurrentAttack = false
 	attackIp = false
@@ -160,3 +177,9 @@ func _on_regen_timer_timeout() -> void:
 			health = 100
 	if health <= 0:
 		health = 0
+
+# todo: fix ts attackIp thingy
+
+func _on_walk_step_timer_timeout() -> void:
+	if walking and attackIp == false:
+		$walkSound.play()

@@ -1,7 +1,7 @@
 [gd_scene load_steps=9 format=3 uid="uid://b7035eob27pkp"]
 
 [ext_resource type="FontFile" uid="uid://c0xl8v404kqjg" path="res://assets/fonts/Poppins-Regular.ttf" id="1_w0no0"]
-[ext_resource type="Script" uid="uid://b68ic2eeirahx" path="res://scripts/MenuScripts/StartGame.gd" id="2_7205l"]
+[ext_resource type="Script" uid="uid://ccif8cirxtgoc" path="res://scripts/useless2.gd" id="3_q1r8t"]
 [ext_resource type="FontFile" uid="uid://35xk5r8kfyyf" path="res://assets/fonts/PressStart2P-Regular.ttf" id="6_npx8y"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bqqt6"]
@@ -39,7 +39,7 @@ shadow_offset = Vector2(0, 1.6)
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_vue75"]
 
-[node name="MainMenu" type="Control"]
+[node name="Death" type="Control"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -87,12 +87,12 @@ theme_override_styles/pressed = SubResource("StyleBoxFlat_l6cm7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ekxnf")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_vue75")
 text = "New Game"
-script = ExtResource("2_7205l")
+script = ExtResource("3_q1r8t")
 
 [node name="Exit" type="Button" parent="VBoxContainer"]
 layout_mode = 2
 size_flags_vertical = 3
-tooltip_text = "Opens Credits"
+tooltip_text = "Takes you back to Menu"
 theme_override_colors/font_color = Color(0, 0, 0, 1)
 theme_override_colors/font_focus_color = Color(0, 0, 0, 1)
 theme_override_colors/font_pressed_color = Color(0, 0, 0, 1)
@@ -102,8 +102,8 @@ theme_override_styles/normal = SubResource("StyleBoxFlat_vue75")
 theme_override_styles/pressed = SubResource("StyleBoxFlat_l6cm7")
 theme_override_styles/hover = SubResource("StyleBoxFlat_ekxnf")
 theme_override_styles/focus = SubResource("StyleBoxEmpty_vue75")
-text = "Exit
-"
+text = "Back to Menu"
+script = ExtResource("3_q1r8t")
 
 [node name="Title" type="Label" parent="."]
 layout_mode = 1
@@ -151,3 +151,4 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [connection signal="pressed" from="VBoxContainer/NewGame" to="VBoxContainer/NewGame" method="_on_pressed"]
+[connection signal="pressed" from="VBoxContainer/Exit" to="VBoxContainer/NewGame" method="_on_exit_pressed"]

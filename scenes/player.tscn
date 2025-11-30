@@ -1,7 +1,10 @@
-[gd_scene load_steps=57 format=3 uid="uid://3ikw1yhh75uf"]
+[gd_scene load_steps=60 format=3 uid="uid://3ikw1yhh75uf"]
 
 [ext_resource type="Script" uid="uid://b0j2v1d2wsjgt" path="res://scripts/player.gd" id="1_g2els"]
 [ext_resource type="Texture2D" uid="uid://bttjeoxp5146s" path="res://assets/sprites/characters/player.png" id="2_qhqgy"]
+[ext_resource type="AudioStream" uid="uid://l5oa3sdnl1ha" path="res://assets/sounds/walk.mp3" id="3_dqkch"]
+[ext_resource type="AudioStream" uid="uid://qpxe0efxrjab" path="res://assets/sounds/hit.mp3" id="4_qlg0r"]
+[ext_resource type="AudioStream" uid="uid://dcqpn10okldqt" path="res://assets/sounds/death.mp3" id="5_qlg0r"]
 
 [sub_resource type="AtlasTexture" id="AtlasTexture_dqkch"]
 atlas = ExtResource("2_qhqgy")
@@ -482,8 +485,22 @@ show_percentage = false
 wait_time = 0.25
 autostart = true
 
+[node name="walkSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_dqkch")
+
+[node name="hitSound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("4_qlg0r")
+volume_db = -7.23
+
+[node name="walkStepTimer" type="Timer" parent="."]
+wait_time = 0.5
+
+[node name="die" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_qlg0r")
+
 [connection signal="body_entered" from="playerHitbox" to="." method="_on_player_hitbox_body_entered"]
 [connection signal="body_exited" from="playerHitbox" to="." method="_on_player_hitbox_body_exited"]
 [connection signal="timeout" from="attackCooldown" to="." method="_on_attack_cooldown_timeout"]
 [connection signal="timeout" from="dealAttack" to="." method="_on_deal_attack_timeout"]
 [connection signal="timeout" from="RegenTimer" to="." method="_on_regen_timer_timeout"]
+[connection signal="timeout" from="walkStepTimer" to="." method="_on_walk_step_timer_timeout"]
